@@ -11,17 +11,22 @@
 
 ## Запуск
 
-Одна строка — она поднимает всю связку:
+Poдняет всю связку. Работает и там, где есть `game:HttpGet`, и там, где его нет
+(Potassium, например, его не добавляет вовсе):
 
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/fornamess/puzo/main/ps99.lua"))()
+local u = "https://raw.githubusercontent.com/fornamess/puzo/main/ps99.lua"
+local r = (syn and syn.request) or http_request or request
+loadstring(r and r({ Url = u, Method = "GET" }).Body or game:HttpGet(u))()
 ```
 
 Фиеста подтягивается по URL автоматически, отдельно запускать её не нужно.
-Только фиесту (если аккаунт уже в ивенте):
+Только фиесту (если аккаунт уже в ивенте) — та же строка с `fiesta.lua`:
 
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/fornamess/puzo/main/fiesta.lua"))()
+local u = "https://raw.githubusercontent.com/fornamess/puzo/main/fiesta.lua"
+local r = (syn and syn.request) or http_request or request
+loadstring(r and r({ Url = u, Method = "GET" }).Body or game:HttpGet(u))()
 ```
 
 ## Настройка
